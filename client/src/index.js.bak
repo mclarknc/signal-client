@@ -5,8 +5,7 @@ import {
     Route,
     browserHistory
 } from 'react-router'
-import {
-  ApolloClient,
+import { ApolloClient,
   ApolloProvider,
   createNetworkInterface
 } from 'react-apollo';
@@ -21,14 +20,15 @@ const networkInterface = createNetworkInterface({ uri: GQ_URI});
 const client = new ApolloClient({
   networkInterface: networkInterface,
 });
-
+console.log(client)
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <Router history={browserHistory}>
-      <Route path="/" component={App} />
-      <Route path="/devicelist" component={DeviceList}/>
-      <Route path="/about" component={About} />
-    </Router>
+	  <Router history={browserHistory}>
+	    <Route path="/" component={App} >
+        <Route path="/about" component={About} />
+        <Route path="/devicelist" component={DeviceList} />
+      </Route>
+    </Router>,
   </ApolloProvider>,
   document.getElementById('root')
 );
